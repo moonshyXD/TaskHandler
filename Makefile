@@ -1,4 +1,4 @@
-.PHONY: run tests build lint
+.PHONY: run test build lint testcover
 
 build:
 	curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -11,3 +11,9 @@ lint:
 	ruff format .
 	ruff check --fix
 	mypy .
+
+testcover:
+	pytest --cov --cov-report=term-missing
+
+test:
+	pytest

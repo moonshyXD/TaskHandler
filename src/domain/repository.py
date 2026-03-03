@@ -1,7 +1,9 @@
+from typing import Protocol
+
 from src.domain.task import Task
 
 
-class TaskRepositoryI:
+class TaskRepositoryI(Protocol):
     def __init__(self) -> None:
         """
         Инициализировать хранилище задач
