@@ -8,6 +8,9 @@ from src.usecases.task_random import TaskRandom
 
 
 def run() -> None:
+    """
+    Запуск интерактивного обработчика задач
+    """
     CLI.greet()
     repo = TaskRepository()
     importer = ImportTasks(repository=repo)

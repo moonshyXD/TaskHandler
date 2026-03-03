@@ -28,6 +28,10 @@ class CLI:
 
     @staticmethod
     def get_tasks_count() -> int:
+        """
+        Запросить у пользователя количество задач для генерации
+        :return: Количество задач
+        """
         raw_input = questionary.text(CLI.TASKS_COUNT_ASK).ask()
         request = GenerateTasksRequest()
         request.count = raw_input
@@ -35,6 +39,10 @@ class CLI:
 
     @staticmethod
     def get_file_path() -> str:
+        """
+        Запросить у пользователя путь к файлу с задачами
+        :return: Путь к файлу
+        """
         raw_input = questionary.text(CLI.FILE_PATH_ASK).ask()
         request = GenerateFilePathRequest()
         request.file_path = raw_input
@@ -42,10 +50,17 @@ class CLI:
 
     @staticmethod
     def greet() -> None:
-        questionary.text(CLI.GREET_MESSAGE)
+        """
+        Вывести приветственное сообщение
+        """
+        print(CLI.GREET_MESSAGE)
 
     @staticmethod
     def action_select() -> str:
+        """
+        Запросить у пользователя выбор действия из меню
+        :return: Выбранное пользователем действие
+        """
         action = questionary.select(
             CLI.ACTION_ASK,
             choices=[
@@ -61,10 +76,17 @@ class CLI:
 
     @staticmethod
     def goodbye() -> None:
-        questionary.text(CLI.GOODBYE_MESSAGE)
+        """
+        Вывести прощальное сообщение
+        """
+        print(CLI.GOODBYE_MESSAGE)
 
     @staticmethod
     def print_tasks(tasks: list[Task]) -> None:
+        """
+        Вывести список задач в консоль
+        :param tasks: Список задач
+        """
         for task in tasks:
             print(task.id)
             print(task.payload)

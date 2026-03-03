@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Any  # <--- Добавляем импорт Any
+from typing import Any
 
 from src.domain.errors import InputValidationError
 
@@ -9,9 +9,20 @@ class TaskCountValidator:
     REASON_NOT_NEGATIVE = "Число должно быть неотрицательным"
 
     def __set_name__(self, owner: Any, name: str) -> None:
+        """
+        Установить имя атрибута для дескриптора
+        :param owner: Класс-владелец дескриптора
+        :param name: Имя атрибута
+        """
         self.name = name
 
     def __set__(self, instance: Any, value: Any) -> None:
+        """
+        Провалидировать и установить количество задач
+        :param instance: Экземпляр класса-владельца
+        :param value: Значение для проверки
+        :raises InputValidationError: Если значение не прошло проверку
+        """
         try:
             val_int = int(value)
         except ValueError:
@@ -33,9 +44,20 @@ class FilePathValidator:
     REASON_NOT_FILE = "Указанный путь ведет к папке, а надо к файлу"
 
     def __set_name__(self, owner: Any, name: str) -> None:
+        """
+        Установить имя атрибута для дескриптора
+        :param owner: Класс-владелец дескриптора
+        :param name: Имя атрибута
+        """
         self.name = name
 
     def __set__(self, instance: Any, value: Any) -> None:
+        """
+        Провалидировать и установить путь к файлу
+        :param instance: Экземпляр класса-владельца
+        :param value: Путь для проверки
+        :raises InputValidationError: Если путь не прошел проверку
+        """
         if not isinstance(value, str):
             raise InputValidationError(
                 field=self.name, reason=self.REASON_NOT_STRING, value=value

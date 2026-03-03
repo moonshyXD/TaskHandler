@@ -3,6 +3,10 @@ from src.domain.task import Task
 
 class TaskAPI:
     def get_tasks(self) -> list[Task]:
+        """
+        Получить список задач из API-заглушки
+        :return: Список сгенерированных задач
+        """
         payload1 = {
             "description": "Эта первая задача для гуся",
             "priority": "Высокий",

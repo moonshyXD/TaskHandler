@@ -7,11 +7,17 @@ class TaskHandlerError(Exception):
 
 class InputValidationError(TaskHandlerError):
     def __init__(self, field: str, value: Any, reason: str):
+        """
+        Инициализировать ошибку валидации ввода
+        :param field: Имя поля, не прошедшего валидацию
+        :param value: Переданное некорректное значение
+        :param reason: Текстовая причина ошибки валидации
+        """
         self.field = field
         self.value = value
         self.reason = reason
         message = (
-            f"Некорректное значение в поле '{self.field}': {self.reason}"
+            f"Некорректное значение в поле '{self.field}': {self.reason} "
             f"Передано: {self.value}"
         )
 
@@ -20,6 +26,10 @@ class InputValidationError(TaskHandlerError):
 
 class ContractViolationError(TaskHandlerError):
     def __init__(self, source_obj: Any):
+        """
+        Инициализировать ошибку нарушения контракта
+        :param source_obj: Объект, не соответствующий ожидаемому контракту
+        """
         self.source_type = type(source_obj).__name__
         message = (
             f"Объект типа '{self.source_type}' "

@@ -20,9 +20,17 @@ class TaskRandom:
     STATUSES = ["Активна", "Неактивна"]
 
     def __init__(self, tasks_count: int):
+        """
+        Инициализировать генератор случайных задач
+        :param tasks_count: Количество задач для генерации
+        """
         self.tasks_count = tasks_count
 
     def get_tasks(self) -> list[Task]:
+        """
+        Сгенерировать случайные задач
+        :return: Список сгенерированных случайных задач
+        """
         tasks_count = self.tasks_count
         tasks = []
         for task_id in range(tasks_count):
