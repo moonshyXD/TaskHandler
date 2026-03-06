@@ -5,7 +5,7 @@ from src.domain.task_source import TaskSource
 
 class TestDomain:
     def test_task_creation(self) -> None:
-        t = Task(1, {"key": "value"})
+        t = Task(id=1, payload={"key": "value"})
         assert t.id == 1 and t.payload == {"key": "value"}
 
     def test_input_error(self) -> None:

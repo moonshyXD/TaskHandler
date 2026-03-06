@@ -26,17 +26,17 @@ class TestUseCases:
         assert len(TaskAPI().get_tasks()) == 2
 
     def test_task_random(self) -> None:
-        tasks = TaskRandom(3).get_tasks()
+        tasks = TaskRandom(3).get_tasks(1)
         assert len(tasks) == 3
         assert tasks[0].payload["priority"] in TaskRandom.PRIORITIIES
         assert tasks[0].payload["description"] in TaskRandom.DESCRIPTIONS
         assert tasks[0].payload["status"] in TaskRandom.STATUSES
-        assert tasks[0].id == 1
+        assert tasks[0].id is None
 
     @patch("builtins.open", mock_open(read_data='1 {"a": 1}'))
     def test_task_file(self) -> None:
         tasks = TaskFile("goose.txt").get_tasks()
-        assert tasks[0].id == 1 and tasks[0].payload == {"a": 1}
+        assert tasks[0].id is None and tasks[0].payload == {"a": 1}
 
     def test_import_tasks_success(self) -> None:
         repo = MockRepo()

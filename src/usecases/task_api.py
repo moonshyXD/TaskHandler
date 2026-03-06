@@ -17,7 +17,7 @@ class TaskAPI:
             "priority": "Низкий",
             "status": "Неактивна",
         }
-        task1 = Task(id=52, payload=payload1)
-        task2 = Task(id=53, payload=payload2)
+        task1 = Task(payload=payload1)
+        task2 = Task(payload=payload2)
         tasks = [task1, task2]
         return tasks

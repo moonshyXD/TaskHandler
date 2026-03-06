@@ -22,8 +22,8 @@ class TaskFile:
 
         tasks = []
         for line in lines:
-            id, payload = line.split(" ", 1)
-            task = Task(id=int(id), payload=json.loads(payload))
+            _, payload = line.split(" ", 1)
+            task = Task(payload=json.loads(payload))
             tasks.append(task)
 
         return tasks

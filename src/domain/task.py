@@ -9,5 +9,5 @@ class Task:
     :param payload: Данные задачи
     """
 
-    id: int
     payload: dict
+    id: int | None = None

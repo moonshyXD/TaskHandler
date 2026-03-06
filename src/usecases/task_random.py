@@ -33,12 +33,11 @@ class TaskRandom:
         """
         tasks_count = self.tasks_count
         tasks = []
-        for task_id in range(tasks_count):
+        for _ in range(tasks_count):
             description = random.choice(self.DESCRIPTIONS)
             priority = random.choice(self.PRIORITIIES)
             status = random.choice(self.STATUSES)
             task = Task(
-                id=task_id + 1,
                 payload={
                     "description": description,
                     "priority": priority,
