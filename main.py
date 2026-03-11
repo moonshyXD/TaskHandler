@@ -1,11 +1,11 @@
 from src.adapters.cli import CLI
 from src.adapters.logger import logging
-from src.adapters.repository import TaskRepository
 from src.domain.errors import ContractViolationError, InputValidationError
+from src.repository.repository import TaskRepository
+from src.repository.task_api import TaskAPI
+from src.repository.task_file import TaskFile
+from src.repository.task_random import TaskRandom
 from src.usecases.import_tasks import ImportTasks
-from src.usecases.task_api import TaskAPI
-from src.usecases.task_file import TaskFile
-from src.usecases.task_random import TaskRandom
 
 
 def run() -> None:

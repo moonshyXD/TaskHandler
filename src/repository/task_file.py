@@ -22,8 +22,18 @@ class TaskFile:
 
         tasks = []
         for line in lines:
-            _, payload = line.split(" ", 1)
-            task = Task(payload=json.loads(payload))
-            tasks.append(task)
+            try:
+                _, payload_str = line.split(" ", 1)
+                payload = json.loads(payload_str)
+
+                task = Task(
+                    description=payload["description"],
+                    priority=payload["priority"],
+                    status=payload["status"],
+                    id=payload.get("id"),
+                )
+                tasks.append(task)
+            except (ValueError, KeyError, json.JSONDecodeError):
+                continue
 
         return tasks

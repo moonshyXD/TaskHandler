@@ -32,5 +32,5 @@ class TestCLI:
 
     @patch("builtins.print")
     def test_print_tasks(self, mock_print: Any) -> None:
-        CLI.print_tasks([Task(id=1, payload={"a": 1})])
-        assert mock_print.call_count == 2
+        CLI.print_tasks([Task(description="Test", priority=1, status=0, id=1)])
+        assert mock_print.call_count == 1

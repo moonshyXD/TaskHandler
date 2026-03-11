@@ -1,6 +1,6 @@
 import questionary
 
-from src.adapters.validators import FilePathValidator, TaskCountValidator
+from src.domain.descriptors import FilePathValidator, TaskCountValidator
 from src.domain.task import Task
 
 
@@ -88,5 +88,4 @@ class CLI:
         :param tasks: Список задач
         """
         for task in tasks:
-            print(task.id)
-            print(task.payload)
+            print(task.id, task.description, task.priority, task.status)

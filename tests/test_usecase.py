@@ -4,10 +4,10 @@ import pytest
 
 from src.domain.errors import ContractViolationError
 from src.domain.task import Task
+from src.repository.task_api import TaskAPI
+from src.repository.task_file import TaskFile
+from src.repository.task_random import TaskRandom
 from src.usecases.import_tasks import ImportTasks
-from src.usecases.task_api import TaskAPI
-from src.usecases.task_file import TaskFile
-from src.usecases.task_random import TaskRandom
 
 
 class MockRepo:
@@ -26,22 +26,33 @@ class TestUseCases:
         assert len(TaskAPI().get_tasks()) == 2
 
     def test_task_random(self) -> None:
-        tasks = TaskRandom(3).get_tasks(1)
+        random_source = TaskRandom(tasks_count=3)
+        tasks = random_source.get_tasks()
         assert len(tasks) == 3
-        assert tasks[0].payload["priority"] in TaskRandom.PRIORITIIES
-        assert tasks[0].payload["description"] in TaskRandom.DESCRIPTIONS
-        assert tasks[0].payload["status"] in TaskRandom.STATUSES
+        assert 1 <= tasks[0].priority <= 5
+        assert tasks[0].description in TaskRandom.DESCRIPTIONS
+        assert tasks[0].status in TaskRandom.STATUSES
         assert tasks[0].id is None
 
-    @patch("builtins.open", mock_open(read_data='1 {"a": 1}'))
     def test_task_file(self) -> None:
-        tasks = TaskFile("goose.txt").get_tasks()
-        assert tasks[0].id is None and tasks[0].payload == {"a": 1}
+        file_content = (
+            '1 {"description": "Test", "priority": 1, "status": 0, "id": 1}\n'
+        )
+        with patch("builtins.open", mock_open(read_data=file_content)):
+            tasks = TaskFile("dummy_path.txt").get_tasks()
+
+            assert len(tasks) == 1
+            assert tasks[0].id == 1
+            assert tasks[0].description == "Test"
+            assert tasks[0].priority == 1
+            assert tasks[0].status == 0
 
     def test_import_tasks_success(self) -> None:
         repo = MockRepo()
-        count = ImportTasks(repo).execute(TaskAPI())
-        assert count == 2 and len(repo.saved) == 2
+        importer = ImportTasks(repo)
+        count = importer.execute(TaskAPI())
+        assert count == 2
+        assert len(repo.saved) == 2
 
     def test_import_tasks_fail(self) -> None:
         with pytest.raises(ContractViolationError):

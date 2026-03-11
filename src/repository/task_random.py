@@ -16,8 +16,8 @@ class TaskRandom:
         "Сходить в коворкинг",
         "Приготовить пиццу",
     ]
-    PRIORITIIES = ["Высокий", "Средний", "Низкий"]
-    STATUSES = ["Активна", "Неактивна"]
+    PRIORITIIES = [1, 2, 3, 4, 5]
+    STATUSES = [0, 1]
 
     def __init__(self, tasks_count: int):
         """
@@ -28,21 +28,19 @@ class TaskRandom:
 
     def get_tasks(self) -> list[Task]:
         """
-        Сгенерировать случайные задач
+        Сгенерировать случайные задачи
         :return: Список сгенерированных случайных задач
         """
-        tasks_count = self.tasks_count
         tasks = []
+        tasks_count = self.tasks_count
         for _ in range(tasks_count):
             description = random.choice(self.DESCRIPTIONS)
             priority = random.choice(self.PRIORITIIES)
             status = random.choice(self.STATUSES)
             task = Task(
-                payload={
-                    "description": description,
-                    "priority": priority,
-                    "status": status,
-                },
+                description=description,
+                priority=priority,
+                status=status,
             )
             tasks.append(task)
 
