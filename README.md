@@ -49,37 +49,27 @@
 
 ## Установка и запуск
 
-1.  **Клонирование репозитория:**
+**Клонирование репозитория:**
     ```bash
-    git clone https://github.com/moonshyXD/TaskHandler
+    git clone https://github.com/moonshyXD/TaskHandler/tree/task-model
     cd TaskHandler
     ```
-
-2.  **Установка зависимостей:**
+**Установка зависимостей:**
     ```bash
     make build
-    # Или вручную: pip install -r requirements.txt
     ```
-
-3.  **Запуск приложения:**
+**Запуск приложения:**
     ```bash
     make run
-    # Или: python main.py
     ```
 
 ## Тестирование и проверка качества
 
-*   **Запуск тестов:**
+**Запуск тестов:**
     ```bash
     pytest
     ```
-
-*   **Проверка покрытия тестами:**
+**Проверка покрытия тестами:**
     ```bash
     make testcover
-    ```
-
-*   **Проверка типов (MyPy):**
-    ```bash
-    mypy .
     ```
