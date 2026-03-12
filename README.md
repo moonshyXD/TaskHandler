@@ -17,7 +17,7 @@
 В проекте реализованы reusable-компоненты для валидации:
 *   `PriorityValidator`: Data descriptor, проверяет, что приоритет — целое число от 1 до 5.
 *   `DescriptionValidator`: Data descriptor, гарантирует, что описание — непустая строка.
-*   `StatusInfoDescriptor`: **Non-data descriptor**, демонстрирующий механизм *shadowing* (перекрытия) атрибутов.
+*   `StatusInfoDescriptor`: **Non-data descriptor**, демонстрирующий механизм перекрытия атрибутов.
 *   `FilePathValidator`, `TaskCountValidator`: Валидаторы для ввода данных в CLI.
 
 ## Основные используемые библиотеки
@@ -49,27 +49,27 @@
 
 ## Установка и запуск
 
-**Клонирование репозитория:**
+### Клонирование репозитория
     ```bash
     git clone https://github.com/moonshyXD/TaskHandler/tree/task-model
     cd TaskHandler
     ```
-**Установка зависимостей:**
+### Установка зависимостей
     ```bash
     make build
     ```
-**Запуск приложения:**
+### Запуск приложения
     ```bash
     make run
     ```
 
 ## Тестирование и проверка качества
 
-**Запуск тестов:**
+### Запуск тестов
     ```bash
     pytest
     ```
-**Проверка покрытия тестами:**
+### Проверка покрытия тестами
     ```bash
     make testcover
     ```
